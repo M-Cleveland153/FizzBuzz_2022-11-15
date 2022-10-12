@@ -1,5 +1,8 @@
 package com.cooksys.ftd.assignments.control;
 
+import java.io.InterruptedIOException;
+import java.util.Arrays;
+
 import com.cooksys.ftd.assignments.control.util.MissingImplementationException;
 
 /**
@@ -23,9 +26,29 @@ public class Fibonacci {
      * @return the calculated element
      * @throws IllegalArgumentException if the given index is less than zero
      */
-    public static int atIndex(int i) throws IllegalArgumentException {
-        throw new MissingImplementationException();
-    }
+	public static int atIndex(int i) throws IllegalArgumentException {
+//      throw new MissingImplementationException();
+		if (i < 0) {
+			System.out.println("Index value must be non-negative.");
+    		throw new IllegalArgumentException();
+    		
+		} else if (i == 0 || i == 1) {
+			return 1;
+		} else {
+			int[] fibArray = new int[i + 1];
+			fibArray[0] = 1;
+			fibArray[1] = 1;
+
+			for (int j = 2; j < fibArray.length; j++) {
+				fibArray[j] = fibArray[j - 2] + fibArray[j - 1];
+//				System.out.println("value at index " + j + ":" + fibArray[j]);
+			}
+//  		System.out.println(Arrays.toString(fibArray));
+			return fibArray[i];
+
+		}
+
+	}
 
     /**
      * Calculates a slice of the fibonacci sequence, starting from a given start index (inclusive) and
@@ -38,7 +61,30 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+//        throw new MissingImplementationException();
+        if(start>end || start < 0 || end < 0) {
+        	System.out.println("indices error");
+        	throw new IllegalArgumentException(); 
+
+        } 
+        
+        if (end<3) {
+        	int[] fibArray = {1,1};
+        	System.out.println(Arrays.toString(fibArray));
+    		return Arrays.copyOfRange(fibArray, start, end);
+			
+		} else {
+			int[] fibArray = new int[end];
+    		fibArray[0] = 1;
+    		fibArray[1] = 1;
+    		
+    		for(int j = 2; j < fibArray.length; j++) {
+            	fibArray[j] = fibArray[j-2] + fibArray[j-1]; 
+            	System.out.println("value at index " + j + ":" + fibArray[j]);
+            }        
+        	System.out.println(Arrays.toString(fibArray));
+    		return Arrays.copyOfRange(fibArray, start, end);
+		}	
     }
 
     /**
@@ -49,6 +95,30 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+//        throw new MissingImplementationException();
+    	if(count < 0) {
+        	System.out.println("Count value must be greater than zero.");
+        	throw new IllegalArgumentException();
+        } else if (count == 0) {
+        	return new int[0];
+        }
+        
+        int[] fibArray = new int[count];
+        if(count == 1) {
+        	fibArray[0] = 1;
+        	
+        }else if(count==2) {
+        	fibArray[0] = 1;
+        	fibArray[1] = 1;
+        }else {
+        	fibArray[0] = 1;
+        	fibArray[1] = 1;
+        	for(int j = 2; j < fibArray.length; j++) {
+            	fibArray[j] = fibArray[j-2] + fibArray[j-1]; 
+            	System.out.println("value at index " + j + ":" + fibArray[j]);
+            }        
+        }
+        System.out.println(Arrays.toString(fibArray));
+    	return fibArray;
     }
 }
