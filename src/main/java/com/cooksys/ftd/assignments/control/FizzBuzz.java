@@ -27,7 +27,10 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+    	if(b == 0) {
+    		throw new IllegalArgumentException();
+    	}
+    	return a%b == 0;
     }
 
     /**
@@ -42,7 +45,15 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new MissingImplementationException();
+    	if(n%3 == 0 && n%5 == 0) {
+    		return Integer.toString(n) + ": FizzBuzz";
+    	} else if (n%3 == 0){
+    		return Integer.toString(n) + ": Fizz";
+    	} else if (n%5 == 0) {
+    		return Integer.toString(n) + ": Buzz";
+    	} else {
+    		return null;
+    	}
     }
 
     /**
@@ -56,7 +67,30 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+    	if(end<start) {
+        	throw new IllegalArgumentException();
+        }
+    	
+    	int nullCount = 0;
+    	for(int num = start; num<end; num++) {
+    		if(message(num) == null) {
+    			nullCount ++;
+    		}
+    	}
+       
+        String[] strArray = new String[end - start - nullCount];
+        int index = 0;
+        for(int i = start; i<end; i++) {
+        	if(message(i)==null) {
+        		continue;
+        	} else {
+            	strArray[index] = message(i);        		
+            	index++;
+        	}
+
+        }
+
+        return strArray;
     }
 
     /**
@@ -64,7 +98,10 @@ public class FizzBuzz {
      * the relevant messages to sysout
      */
     public static void main(String[] args) {
-        throw new MissingImplementationException();
+    	String[] messages = messages(1, 116);
+    	for(String message: messages) {
+    		System.out.println(message);
+    	}
     }
 
 }

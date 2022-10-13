@@ -27,7 +27,6 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given index is less than zero
      */
 	public static int atIndex(int i) throws IllegalArgumentException {
-//      throw new MissingImplementationException();
 		if (i < 0) {
 			System.out.println("Index value must be non-negative.");
     		throw new IllegalArgumentException();
@@ -41,9 +40,8 @@ public class Fibonacci {
 
 			for (int j = 2; j < fibArray.length; j++) {
 				fibArray[j] = fibArray[j - 2] + fibArray[j - 1];
-//				System.out.println("value at index " + j + ":" + fibArray[j]);
 			}
-//  		System.out.println(Arrays.toString(fibArray));
+
 			return fibArray[i];
 
 		}
@@ -61,7 +59,7 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-//        throw new MissingImplementationException();
+
         if(start>end || start < 0 || end < 0) {
         	System.out.println("indices error");
         	throw new IllegalArgumentException(); 
@@ -95,7 +93,7 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-//        throw new MissingImplementationException();
+
     	if(count < 0) {
         	System.out.println("Count value must be greater than zero.");
         	throw new IllegalArgumentException();
